@@ -23,10 +23,16 @@ Y que sigue las siguientes normas:
 Ejemplos:
 
 **Input**
-CXL                  DCIII                  MMXL                  LV
+CXL                  
+DCIII                  
+MMXL                  
+LV
 
 **Output**
-140                  603                    2040                  55
+140                  
+603                    
+2040                  
+55
 
 Con una aplicación de terminal en PHP basta. Si queréis luciros con una presentación en HTML/CSS etc...adelante.
 
