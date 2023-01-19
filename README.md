@@ -11,7 +11,7 @@ Recordad que el sistema numérico romano se basa en 7 símbolos:
 - L = 50
 - C = 100
 - D = 500
-- M = 100
+- M = 1000
 
 Y que sigue las siguientes normas:
 
@@ -23,16 +23,19 @@ Y que sigue las siguientes normas:
 Ejemplos:
 
 **Input**
-CXL                  
-DCIII                  
-MMXL                  
-LV
+- 140                  
+- 603                    
+- 2040                  
+- 55
 
 **Output**
-140                  
-603                    
-2040                  
-55
+
+- CXL                  
+- DCIII                  
+- MMXL                  
+- LV
+
+
 
 Con una aplicación de terminal en PHP basta. Si queréis luciros con una presentación en HTML/CSS etc...adelante.
 
