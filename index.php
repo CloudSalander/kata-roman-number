@@ -2,59 +2,50 @@
 
 //Precondition: Numbers between 1 and 3999
 
-function printNChars($char,$n) {
+class RomanNumberValueAndAmount {
+	public $value;
+	public $amount;
+
+	public function __construct($value) {
+		$this->value = $value;
+		$this->amount = 0;
+	}
+}
+
+function printNChars(string $char,int $n) {
 	for($i = 0; $i < $n; ++$i) {
 		echo $char;
 	}
 }
 
 
-function printRomanNumber($roman_numbers) {
+function printRomanNumber(array $roman_numbers) {
 	$prev_roman_number = '';
-	foreach($roman_numbers as $roman_number => $value) {
-		if($value > 0 && $value < 4) printNChars($roman_number,$value);
-		else if($value == 4) echo $roman_number.$prev_roman_number; 
-		$prev_roman_number = $roman_number;
+	foreach($roman_numbers as $index => $roman_number) {
+		if($roman_number->amount > 0 && $roman_number->amount < 4) printNChars($index,$roman_number->amount);
+		else if($roman_number->amount == 4) echo $index.$prev_roman_number; 
+		$prev_roman_number = $index;
 	}
 	echo ' ';
 }
 
+
 function printIntToRoman(int $number) {
 	$roman_numbers = [
-		'M' => 0,
-		'D' => 0,
-		'C' => 0,
-		'L' => 0,
-		'X' => 0,
-		'V' => 0,
-		'I' => 0
+		'M' => new RomanNumberValueAndAmount(1000),
+		'D' => new RomanNumberValueAndAmount(500),
+		'C' => new RomanNumberValueAndAmount(100),
+		'L' => new RomanNumberValueAndAmount(50),
+		'X' => new RomanNumberValueAndAmount(10),
+		'V' => new RomanNumberValueAndAmount(5),
+		'I' => new RomanNumberValueAndAmount(1)
 	];
-	if(intdiv($number,1000) > 0) {
-		$roman_numbers['M'] = intdiv($number,1000);
-		$number %= 1000; 
+	#not the most readable codelines but they save A LOT of lines :) Thx to RomanNumberAndAmount class
+	foreach($roman_numbers as $index=>$roman_number) {
+		$roman_numbers[$index]->amount =  intdiv($number,$roman_numbers[$index]->value);
+		$number %= $roman_numbers[$index]->value;
 	}
-	if(intdiv($number,500) > 0) {
-		$roman_numbers['D'] = intdiv($number,500);
-		$number %= 500;
-	}
-	if(intdiv($number,100) > 0) {
-		$roman_numbers['C'] = intdiv($number,100);
-		$number %= 100;
-	}
-	if(intdiv($number,50) > 0) {
-		$roman_numbers['L'] = intdiv($number,50);
-		$number %= 50;
-	}
-	if(intdiv($number,10) > 0) {
-		$roman_numbers['X'] = intdiv($number,10);
-		$number %= 10;
-	}
-	if(intdiv($number,5) > 0) {
-		$roman_numbers['V'] = intdiv($number,5);
-		$number %= 5;
-	}
-	
-	$roman_numbers['I'] = $number;
+	$roman_numbers['I']->amount = $number;		#the rest of the value belongs to roman number I
 	printRomanNumber($roman_numbers);
 } 
 
